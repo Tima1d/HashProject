@@ -1,0 +1,35 @@
+{
+    "index": 71,
+    "pre_hash": "000d27c9bd682d219bbcaab3e3c31b4447055abaede031788c72263c5074754cbee2ffcf451c0eddc147e70204e10c0905ce7659483343d71ef59e1e7fe6e9f9",
+    "timestamp": 1649168281,
+    "transactions": [
+        {
+            "from": "Nick",
+            "to": "Uwe",
+            "value": 110.465
+        },
+        {
+            "from": "Nick",
+            "to": "Clark",
+            "value": 323.017
+        },
+        {
+            "from": "Xaver",
+            "to": "Fred",
+            "value": 266.351
+        },
+        {
+            "from": "Robert",
+            "to": "Bob",
+            "value": 306.437
+        },
+        {
+            "from": "SYSTEM",
+            "to": "Xaver",
+            "value": 1.87
+        }
+    ],
+    "secret_info": "",
+    "nonce": 1994,
+    "hash": "00074034c5eefbc1cec6fce5eb3f263ea2e5bb9030b62b8a1f4e33077b77d35d346fcddcb79c040d2acfe69407480777bc4d7f79b8fd30ab4050a9de4af6b7d1"
+}

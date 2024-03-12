@@ -1,0 +1,25 @@
+{
+    "index": 41,
+    "pre_hash": "0008ff63010b999a7d569100b737e743692c8ee2e25da309def480569d1e7d631b6bbda01f093e055be9ea5c0ddbcd4036266639b86961e5c81cad390ee958b3",
+    "timestamp": 1649168220,
+    "transactions": [
+        {
+            "from": "Harry",
+            "to": "Uwe",
+            "value": 491.743
+        },
+        {
+            "from": "Bob",
+            "to": "Quinn",
+            "value": 412.07
+        },
+        {
+            "from": "SYSTEM",
+            "to": "Yana",
+            "value": 13.69
+        }
+    ],
+    "secret_info": "",
+    "nonce": 7580,
+    "hash": "000ebe2ff89b4eac1d7ea2024b3d76e8cc83c9f25ab93561248ba06e4eeaeee9e5a32cd872fb6355d897ccb3514c665bbd99306c6bda03277d38bd770f786093"
+}

@@ -1,0 +1,30 @@
+{
+    "index": 24,
+    "pre_hash": "0009c1068995170b937aa3a280e435bc6aeb5b1077827b736af26d3a9e81da3dacec61e52ff7dcb92c2c3ea952a74893902f562ea5a7de931286f424dcf4b92e",
+    "timestamp": 1649168218,
+    "transactions": [
+        {
+            "from": "Din",
+            "to": "Victor",
+            "value": 255.701
+        },
+        {
+            "from": "Oliver",
+            "to": "Bob",
+            "value": 469.919
+        },
+        {
+            "from": "Lu",
+            "to": "Kevin",
+            "value": 402.772
+        },
+        {
+            "from": "SYSTEM",
+            "to": "Yana",
+            "value": 37.0
+        }
+    ],
+    "secret_info": "",
+    "nonce": 2739,
+    "hash": "000740615660d0eca514471c3ed2a08c7acd0460c29c4360c719bc6c30a3a1ce11ecd0d4f82eeff80f1b9339098b3317c7ba2214fb8ee44c0c614afeb8536bfd"
+}

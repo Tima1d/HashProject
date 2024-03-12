@@ -1,0 +1,25 @@
+{
+    "index": 26,
+    "pre_hash": "000cc8f987cfbc92fa8fe763431a3a03235eb3384f065a8da153b22bf4e7f86ddc84ba2a6ff936c820bd0c66440d7de91a612f24a62899cb877d3afed5427aaf",
+    "timestamp": 1649168218,
+    "transactions": [
+        {
+            "from": "Lu",
+            "to": "Clark",
+            "value": 276.732
+        },
+        {
+            "from": "Fred",
+            "to": "Gloria",
+            "value": 201.122
+        },
+        {
+            "from": "SYSTEM",
+            "to": "Eve",
+            "value": 37.0
+        }
+    ],
+    "secret_info": "",
+    "nonce": 1772,
+    "hash": "0002310edc5541a3cbaf24e74ea6ffa77f39dfb87401e4368d10be01854daf4d861a1664362983f0e6dcf9fef181986ae960b8102c5f784d6a42ed13f6610342"
+}

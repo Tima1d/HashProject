@@ -1,0 +1,35 @@
+{
+    "index": 74,
+    "pre_hash": "00057b4b639fbf426759954ef1e6832b76a7c186d45cba529ff920a44aae51b43299b0617cf2d2592af227902701ebb2ab165fcf19a6a31a35024b5987bec60d",
+    "timestamp": 1649168281,
+    "transactions": [
+        {
+            "from": "Xaver",
+            "to": "Fred",
+            "value": 150.885
+        },
+        {
+            "from": "Lu",
+            "to": "Kevin",
+            "value": 333.61
+        },
+        {
+            "from": "Robert",
+            "to": "Sam",
+            "value": 307.252
+        },
+        {
+            "from": "Harry",
+            "to": "Mary",
+            "value": 84.12
+        },
+        {
+            "from": "SYSTEM",
+            "to": "Gloria",
+            "value": 1.87
+        }
+    ],
+    "secret_info": "",
+    "nonce": 1670,
+    "hash": "000a84f72aab80e4c1265c3c61c822065f93b0dc3c77e9cf96acd9d93625529f441f829a619de81720c6f5683e007ba03b72edf383b46f42bd8cecab46af8c3d"
+}
