@@ -5,7 +5,7 @@ from itertools import takewhile
 from functools import reduce
 
 
-def load_transaction_blocks(directory='./transactions'):
+def load_transaction_blocks(directory='../transactions'):
     block_data = [
         load(open(f"{directory}/{filename}", 'r'))
         for filename in listdir(directory)
@@ -27,14 +27,16 @@ def find_special_block(blocks):
         if block['hash'][-3::] == '000':
             return block['index'], block['transactions'][-1]['to']
 
-#print(find_special_block(block_data))
+print(find_special_block(block_data))
 
 
 def find_smallest_fork(blocks):
-    indices = sorted([block['index'] for block in blocks])
+    indices = [block['index'] for block in blocks]
 
     # Поиск индексов блоков, которые входят в форк
     gap_between_indices = [indices[i] for i in range(len(indices) - 1) if indices[i] - indices[i + 1] == 0]
+
+    gap_between_indices.append(0)
 
     fork_length = []
     count = 0
@@ -47,11 +49,11 @@ def find_smallest_fork(blocks):
 
     return min(fork_length)
 
-#print(find_smallest_fork(block_data))
+print(find_smallest_fork(block_data))
 
 
 def find_first_block_of_shortest_fork(blocks):
-    indices = sorted([block['index'] for block in blocks])
+    indices = [block['index'] for block in blocks]
 
     # Поиск индексов блоков, которые входят в форк
     gap_between_indices = [indices[i] for i in range(len(indices) - 1) if indices[i] - indices[i + 1] == 0]
@@ -73,11 +75,11 @@ def find_first_block_of_shortest_fork(blocks):
 
     return minimum_fork_data[0]
 
-#print(find_first_block_of_shortest_fork(block_data))
+print(find_first_block_of_shortest_fork(block_data))
 
 
 def find_largest_block(blocks):
-    indices = sorted([block['index'] for block in blocks])
+    indices = [block['index'] for block in blocks]
 
     # Другой способ решения
     # a = [indices[i] - indices[i+1] for i in range(len(indices)-1)]
@@ -100,7 +102,7 @@ def find_largest_block(blocks):
 
     return max(fork_length)
 
-#print(find_largest_block(block_data))
+print(find_largest_block(block_data))
 
 
 def find_last_block_hash_of_longest_fork(block_data):
@@ -129,40 +131,43 @@ def find_last_block_hash_of_longest_fork(block_data):
     # Возвращение хэша последнего блока в наиболее длинной отброшенной ветке
     return max(longest_fork_details)[1]
 
-#print(find_last_block_hash_of_longest_fork(block_data))
+print(find_last_block_hash_of_longest_fork(block_data))
 
 
 def find_number_forks(block_data):
-    indices = sorted([block['index'] for block in block_data])
+    indices = [block['index'] for block in block_data]
 
     # Поиск индексов блоков, которые входят в форк
     gap_between_indices = [indices[i] for i in range(len(indices) - 1) if indices[i] - indices[i + 1] == 0]
 
-    number_forks = 0
+    if gap_between_indices is None:
+        return 0
+    
+    number_forks = 1
+
     # Поиск количества форков
     for i in range(len(gap_between_indices) - 1):
         if gap_between_indices[i] - gap_between_indices[i + 1] != -1:
             number_forks += 1
 
+
     return number_forks
 
-#print(find_number_forks(block_data))
+print(find_number_forks(block_data))
 
 
 def find_reward_size_block_71(block_data):
     return next((block['transactions'][-1]['value'] for block in block_data if block['index'] == 71), None)
 
-#print(find_reward_size_block_71(block_data))
+print(find_reward_size_block_71(block_data))
 
 
 def searching_remuneration_reduction_period(block_data):
-    block_data.sort(key = lambda block: block['index'])
-
     # # Удаление индесков блоков форков(Можно просто заменить функциями set(list()) )
     # block_data = [block_data[i] for i in range(len(block_data) - 1) if block_data[i]['index'] != block_data[i + 1]['index']]
 
     # Удалене первого блока(У него странное вожнаграждение)
-    block_data.pop(0)
+    #block_data.pop(0)
 
     reward_for_first_block = block_data[0]['transactions'][-1]['value']
 
@@ -177,10 +182,10 @@ def searching_remuneration_reduction_period(block_data):
     pre_halving_and_fork_blocks = takewhile(lambda block: block['transactions'][-1]['value'] == reward_for_first_block, block_data)
     pre_halving_and_fork_block_indices = (block['index'] for block in pre_halving_and_fork_blocks)
 
-    # Подсчет количства блоко до халвинга без учета блоков форков
-    return len(set(pre_halving_and_fork_block_indices))
+    # Подсчет количства блоко до халвинга без учета блоков форков с первонаяальным блоком(+1)
+    return len(set(pre_halving_and_fork_block_indices)) + 1
 
-#print(searching_remuneration_reduction_period(block_data))
+print(searching_remuneration_reduction_period(block_data))
 
 
 def finding_remuneration_reduction_factor(block_data):
@@ -192,23 +197,24 @@ def finding_remuneration_reduction_factor(block_data):
         if block['transactions'][-1]['value'] != initial_reward_price
     ), None)
 
-    return round(initial_reward_price / reward_price_after_halving, 2)
+    return round(reward_price_after_halving / initial_reward_price, 2)
 
-#print(finding_remuneration_reduction_factor(block_data))
+print(finding_remuneration_reduction_factor(block_data))
 
 
 def find_block_with_reward_of_0_09(block_data):
     remuneration_reduction_factor = finding_remuneration_reduction_factor(block_data)
+    remuneration_reduction_period = searching_remuneration_reduction_period(block_data)
     reward_price = block_data[0]['transactions'][-1]['value']
     block_number = 0
 
     while reward_price > 0.09:
-        reward_price /= remuneration_reduction_factor
-        block_number += 16
+        reward_price *= remuneration_reduction_factor
+        block_number += remuneration_reduction_period
 
-    return block_number
+    return block_number - remuneration_reduction_period
 
-#print(find_block_with_reward_of_0_09(block_data))
+print(find_block_with_reward_of_0_09(block_data))
 
 
 def find_blocks_with_secret_info(block_data):
@@ -242,7 +248,7 @@ def find_blocks_with_secret_info(block_data):
 
     return str_with_all_secret_info
 
-#print(find_blocks_with_secret_info(block_data))
+print(find_blocks_with_secret_info(block_data))
 
 
 def conversion_from_hex_to_str(hex_string):
