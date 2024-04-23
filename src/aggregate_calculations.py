@@ -65,16 +65,16 @@ def get_avg_reward(block_data):
 
     sum_reward = 0
 
-    # for block in block_data:
-    #     for transaction in block['transactions'][1::]:
-    #         sum_reward += transaction['value']
+    for block in block_data:
+        for transaction in block['transactions'][:-1:]:
+            sum_reward += transaction['value']
 
-    # sum(итерируемый обьект, начальное значение)
-    # sum_reward += sum(block['transactions'], lambda trans: trans['value'])
-    return sum(*[block['transactions'] for block in block_data]) / total_number_transactions_blocks(block_data)
-    # return sum_reward / total_number_transactions_blocks(block_data)
+    # return sum(*[block['transactions'] for block in block_data]) /
+    # total_number_transactions_blocks(block_data)
 
-print(get_avg_reward(block_data))
+    return sum_reward / total_number_transactions_blocks(block_data)
+
+# print(get_avg_reward(block_data))
 
 
 def group_blocks_time(block_data):
